@@ -1,0 +1,14 @@
+{
+  "images": [
+    {
+      "name": "cover",
+      "prompt": "本の表紙イラスト。シンプルでモダンなデザイン、落ち着いた色合い。",
+      "aspectRatio": "3:4"
+    },
+    {
+      "name": "chapter1-hero",
+      "prompt": "第1章のヒーロー画像。導入を象徴する抽象的なイラスト。",
+      "aspectRatio": "4:3"
+    }
+  ]
+}
