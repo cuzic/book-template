@@ -14,7 +14,8 @@
     "lint:text": "textlint \"src/**/*.md\" \"knowledges/**/*.md\"",
     "lint:fix": "bun run lint:md:fix && bun run lint:text:fix",
     "lint:md:fix": "markdownlint-cli2 --fix",
-    "lint:text:fix": "textlint --fix \"src/**/*.md\" \"knowledges/**/*.md\""
+    "lint:text:fix": "textlint --fix \"src/**/*.md\" \"knowledges/**/*.md\"",
+    "check:epub": "bun run scripts/check-epub.ts"
   },
   "dependencies": {
     "unified": "^11",
