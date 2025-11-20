@@ -39,3 +39,6 @@ bun.lockb
 # batch files
 *.jsonl
 batch-job.json
+
+# tools
+.tools/
