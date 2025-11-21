@@ -14,6 +14,7 @@ bun run build              # Build all formats (HTML, XHTML, EPUB)
 bun run build:html         # HTML only
 bun run build:xhtml        # XHTML only
 bun run build:epub         # EPUB only
+bun run check:epub         # Validate EPUB with epubcheck
 
 # Linting (strict - exceptions via inline markers only)
 bun run lint               # Run all linters
