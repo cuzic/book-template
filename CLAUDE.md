@@ -10,10 +10,11 @@ Book repository template for writing books in Markdown and generating HTML/XHTML
 
 ```bash
 # Build
-bun run build              # Build all formats (HTML, XHTML, EPUB)
+bun run build              # Build all formats (HTML, XHTML, EPUB, Site)
 bun run build:html         # HTML only
 bun run build:xhtml        # XHTML only
 bun run build:epub         # EPUB only
+bun run build:site         # GitHub Pages site (chapters + single page + EPUB)
 bun run check:epub         # Validate EPUB with epubcheck
 
 # Linting (strict - exceptions via inline markers only)
@@ -36,10 +37,21 @@ bun run images:download    # Download generated images to src/assets/images/
 - Outputs to `dist/html/`, `dist/xhtml/`, `dist/book.epub`
 - Book metadata from `book.json`
 
+**Site Output** (`dist/site/`):
+- `index.html`: 目次ページ
+- `chapters/*.html`: 章ごとの個別ページ（前後ナビゲーション付き）
+- `single.html`: 全章を1ページにまとめたページ
+- `book.epub`: EPUBダウンロード用
+- `images/`: 画像ファイル
+
 **Image Generation** (`scripts/generate-image-batch.ts`, `submit-image-batch.ts`, `download-images.ts`):
 - Prompts defined in `src/images.json`
 - Uses Gemini Batch API with model `gemini-3-pro-image-preview`
 - Supports aspect ratios: 3:4, 1:1, 4:3
+
+**GitHub Actions** (`.github/workflows/deploy.yml`):
+- Lint → Build EPUB → Validate → Build Site → Deploy to GitHub Pages
+- PRではビルドのみ、mainブランチへのpushでデプロイ
 
 ## Linting Policy
 
