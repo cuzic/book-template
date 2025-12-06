@@ -69,6 +69,26 @@ Both linters are configured strictly. Do NOT relax global rules. Use inline mark
 
 **Key textlint rules**: ですます調統一、句点(。)必須、文長150字以内、読点3個以内
 
+## Skills (執筆ワークフロー)
+
+```
+/book:outline <テーマ>      # テーマから目次を生成
+/book:outline               # knowledgesを考慮して目次を改善
+/book:research <トピック>   # Web検索してknowledges/に保存
+/book:research              # 目次に基づいて網羅的に検索
+/book:review                # 目次を批判的にレビュー
+/book:review --iterations 3 # レビュー→改善を3回繰り返す
+/book:apply                 # レビュー結果を目次に反映
+/book:write <章番号>        # 章を執筆
+```
+
+**推奨ワークフロー**:
+1. `/book:outline テーマ` - 初期目次作成
+2. `/book:research` - 網羅的に調査
+3. `/book:outline` - 知見を反映して改善
+4. `/book:review --iterations 3` - レビューサイクル
+5. `/book:write 01` - 章ごとに執筆
+
 ## Bun Usage
 
 Use Bun instead of Node.js:
