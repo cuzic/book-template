@@ -1,24 +1,5 @@
 {
-  "skills": {
-    "book:outline": {
-      "description": "目次生成・改善",
-      "path": "skills/book-outline.md"
-    },
-    "book:research": {
-      "description": "Web検索・知見保存",
-      "path": "skills/book-research.md"
-    },
-    "book:review": {
-      "description": "Devil's Advocate レビュー",
-      "path": "skills/book-review.md"
-    },
-    "book:apply": {
-      "description": "レビュー結果の適用",
-      "path": "skills/book-apply.md"
-    },
-    "book:write": {
-      "description": "章の執筆",
-      "path": "skills/book-write.md"
-    }
+  "env": {
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
   }
 }

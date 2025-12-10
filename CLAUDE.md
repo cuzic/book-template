@@ -69,25 +69,51 @@ Both linters are configured strictly. Do NOT relax global rules. Use inline mark
 
 **Key textlint rules**: ですます調統一、句点(。)必須、文長150字以内、読点3個以内
 
+## Agent Team (7役割)
+
+書籍執筆を7つのエージェントで分担します。
+
+| 役割 | 責務 | ファイル所有 |
+|------|------|-------------|
+| **Author** | 全体統括、テーマ決定、最終判断 | `book.json` |
+| **Researcher** | Web検索、知見収集 | `knowledges/*.md` |
+| **Writer** | 章の執筆 | `src/chapters/**` |
+| **Reviewer** | 批判的レビュー | `knowledges/reviews/**` |
+| **Editor** | 文体統一、推敲、lint修正 | `src/chapters/**` (Writer後) |
+| **Publisher** | ビルド、検証、デプロイ | `dist/**` |
+| **Architect** | スキル・プロセス改善 | `.claude/**`, `knowledges/process/**` |
+
+チーム起動例:
+```
+Create an agent team for writing a book about "Pythonデータ分析入門".
+Spawn teammates: Researcher, Writer, Reviewer, Editor, Publisher, Architect.
+```
+
 ## Skills (執筆ワークフロー)
 
 ```
-/book:outline <テーマ>      # テーマから目次を生成
-/book:outline               # knowledgesを考慮して目次を改善
-/book:research <トピック>   # Web検索してknowledges/に保存
-/book:research              # 目次に基づいて網羅的に検索
-/book:review                # 目次を批判的にレビュー
-/book:review --iterations 3 # レビュー→改善を3回繰り返す
-/book:apply                 # レビュー結果を目次に反映
-/book:write <章番号>        # 章を執筆
+/book-outline <テーマ>      # テーマから目次を生成
+/book-outline               # knowledgesを考慮して目次を改善
+/book-research <トピック>   # Web検索してknowledges/に保存
+/book-research              # 目次に基づいて網羅的に検索
+/book-review                # 目次を批判的にレビュー
+/book-review --iterations 3 # レビュー→改善を3回繰り返す
+/book-apply                 # レビュー結果を目次に反映
+/book-write <章番号>        # 章を執筆
 ```
 
 **推奨ワークフロー**:
-1. `/book:outline テーマ` - 初期目次作成
-2. `/book:research` - 網羅的に調査
-3. `/book:outline` - 知見を反映して改善
-4. `/book:review --iterations 3` - レビューサイクル
-5. `/book:write 01` - 章ごとに執筆
+1. `/book-outline テーマ` - 初期目次作成
+2. `/book-research` - 網羅的に調査
+3. `/book-outline` - 知見を反映して改善
+4. `/book-review --iterations 3` - レビューサイクル
+5. `/book-write 01` - 章ごとに執筆
+
+## Knowledge Directories
+
+- `knowledges/*.md` - 調査結果（Researcher管理）
+- `knowledges/reviews/*.md` - レビュー結果（Reviewer管理）
+- `knowledges/process/*.md` - プロセス知見（Architect管理）
 
 ## Bun Usage
 
