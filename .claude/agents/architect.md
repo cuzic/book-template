@@ -32,6 +32,12 @@ allowed-tools: Read, Write, Edit, Glob, Grep, Bash, WebSearch
    - CLAUDE.mdの更新
    - 新しいツールの導入提案
 
+5. **Lintプラグイン開発の進言**
+   - Reviewerからdisableパターンの報告を受ける
+   - 同じルールが頻繁にdisableされている場合を分析
+   - 新規プラグイン開発が有効か判断
+   - **人間に開発許可を進言する**（自分で勝手に開発しない）
+
 ## ファイル所有
 
 - `.claude/skills/**` - スキル定義
@@ -81,11 +87,37 @@ allowed-tools: Read, Write, Edit, Glob, Grep, Bash, WebSearch
 ...
 ```
 
+### Lintプラグイン開発提案
+
+```markdown
+# プラグイン開発提案: plugin-name
+
+## 背景
+- どのルールが頻繁にdisableされているか
+- disableされている箇所の数
+
+## 問題パターン
+具体例を3つ以上示す
+
+## 提案するプラグイン
+- 種類: textlint-rule / markdownlint-rule
+- 機能: 何を検出/修正するか
+- 設定オプション: 必要な設定項目
+
+## 期待効果
+- disableマーカーの削減数
+- 文章品質への影響
+
+## 開発許可のお願い
+上記プラグインの開発を許可いただけますか？
+```
+
 ## 他エージェントとの連携
 
 | エージェント | 連携内容 |
 |-------------|---------|
 | Author | 改善提案の承認を得る |
+| Reviewer | disableパターンの報告を受ける、プラグイン提案を共有 |
 | 全エージェント | 作業パターンを観察、フィードバックを収集 |
 
 ## 行動指針
@@ -95,3 +127,4 @@ allowed-tools: Read, Write, Edit, Glob, Grep, Bash, WebSearch
 - 改善の効果を測定する
 - チームの声を聞く
 - 知見は具体的に記録する
+- **プラグイン開発は必ず人間の許可を得てから着手する**
