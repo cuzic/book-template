@@ -47,7 +47,9 @@ bun run images:download    # Download generated images to src/assets/images/
 **Image Generation** (`scripts/generate-image-batch.ts`, `submit-image-batch.ts`, `download-images.ts`):
 - Prompts defined in `src/images.json`
 - Uses Gemini Batch API with model `gemini-3-pro-image-preview`
+- Resolution: **2K** (高品質出版物向け)
 - Supports aspect ratios: 3:4, 1:1, 4:3
+- Workflow: Reviewer→Illustrator→Publisher (バッチ処理でコスト削減)
 
 **GitHub Actions** (`.github/workflows/deploy.yml`):
 - Lint → Build EPUB → Validate → Build Site → Deploy to GitHub Pages
@@ -69,24 +71,25 @@ Both linters are configured strictly. Do NOT relax global rules. Use inline mark
 
 **Key textlint rules**: ですます調統一、句点(。)必須、文長150字以内、読点3個以内
 
-## Agent Team (7役割)
+## Agent Team (8役割)
 
-書籍執筆を7つのエージェントで分担します。
+書籍執筆を8つのエージェントで分担します。
 
 | 役割 | 責務 | ファイル所有 |
 |------|------|-------------|
 | **Author** | 全体統括、テーマ決定、最終判断 | `book.json` |
 | **Researcher** | Web検索、知見収集 | `knowledges/*.md` |
 | **Writer** | 章の執筆 | `src/chapters/**` |
-| **Reviewer** | 批判的レビュー | `knowledges/reviews/**` |
+| **Reviewer** | 批判的レビュー、図解箇所特定 | `knowledges/reviews/**` |
+| **Illustrator** | 図解プロンプト作成 | `src/images.json` |
 | **Editor** | 文体統一、推敲、lint修正 | `src/chapters/**` (Writer後) |
-| **Publisher** | ビルド、検証、デプロイ | `dist/**` |
+| **Publisher** | ビルド、検証、画像生成、デプロイ | `dist/**` |
 | **Architect** | スキル・プロセス改善 | `.claude/**`, `knowledges/process/**` |
 
 チーム起動例:
 ```
 Create an agent team for writing a book about "Pythonデータ分析入門".
-Spawn teammates: Researcher, Writer, Reviewer, Editor, Publisher, Architect.
+Spawn teammates: Researcher, Writer, Reviewer, Illustrator, Editor, Publisher, Architect.
 ```
 
 ## Skills (執筆ワークフロー)
@@ -96,10 +99,12 @@ Spawn teammates: Researcher, Writer, Reviewer, Editor, Publisher, Architect.
 /book-outline               # knowledgesを考慮して目次を改善
 /book-research <トピック>   # Web検索してknowledges/に保存
 /book-research              # 目次に基づいて網羅的に検索
-/book-review                # 目次を批判的にレビュー
+/book-review                # 目次を批判的にレビュー（図解提案含む）
 /book-review --iterations 3 # レビュー→改善を3回繰り返す
 /book-apply                 # レビュー結果を目次に反映
 /book-write <章番号>        # 章を執筆
+/book-illustrate [章番号]   # 図解プロンプトを作成しimages.jsonに追加
+/book-generate-images       # Geminiバッチで画像を生成
 /book-approve <マイルストーン> # 人間の承認を記録
 ```
 

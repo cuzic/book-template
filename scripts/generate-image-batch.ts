@@ -47,7 +47,7 @@ async function main() {
         generationConfig: {
           responseModalities: ["image"],
           aspectRatio: image.aspectRatio,
-          resolution: "1K",
+          resolution: "2K",
         },
       },
     };
