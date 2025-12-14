@@ -18,18 +18,25 @@ $ARGUMENTS
 
 ## 入出力
 
-- **入力**: `src/toc.md`（目次）、`knowledges/`（調査結果）
+- **入力**: `src/toc.md`（詳細化済み目次）
 - **出力**: `src/chapters/XX-slug.md`（章ファイル）
+
+## 前提条件
+
+- `/book-detail`で目次が詳細化されていること
+- 各セクションに「書くべきポイント」「参考資料」が記載されていること
 
 ## 処理手順
 
-1. `src/toc.md`から該当章の構成を読み込む
-2. `knowledges/`から関連する知見を収集する
-3. `book.json`のメタデータを確認する
-4. `src/chapters/XX-slug.md`に本文を執筆する
+1. `src/toc.md`から該当章の詳細情報を読み込む
+2. 「書くべきポイント」に従って本文を執筆する
+3. 「参考資料」のknowledgesを適宜参照・引用する
+4. `src/chapters/XX-slug.md`に本文を出力する
 5. Publisherに公開を依頼する（GitHub Pages）
 
-**注意**: lintチェックは夜間バッチ処理で行う（執筆時は不要）
+**注意**:
+- 調査は不要（既にknowledgesに蓄積されている）
+- lintチェックは夜間バッチ処理で行う（執筆時は不要）
 
 ## 執筆ガイドライン
 
