@@ -50,13 +50,15 @@ allowed-tools: Read, Write, Edit, Glob, Grep
 |-------------|---------|
 | Author | 執筆指示を受ける |
 | Researcher | 必要な情報を依頼 |
-| Reviewer | レビューを受ける |
+| Publisher | 執筆後すぐに公開を依頼 |
 | Illustrator | 画像の配置場所を確認、図解が必要な箇所を伝える |
+| Reviewer | 夜間バッチ後にレビューを受ける |
 | Editor | 編集後の確認 |
 
 ## 行動指針
 
 - 読者目線で分かりやすさを追求する
-- 執筆後は必ず `bun run lint` を実行する
+- 執筆後はすぐにPublisherに公開を依頼する
+- lintは夜間バッチで行う（執筆時は不要）
 - 不明点はResearcherに確認を依頼する
 - Reviewerの指摘には真摯に対応する
