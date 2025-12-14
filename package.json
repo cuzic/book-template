@@ -16,6 +16,9 @@
     "lint:fix": "bun run lint:md:fix && bun run lint:text:fix",
     "lint:md:fix": "markdownlint-cli2 --fix",
     "lint:text:fix": "textlint --fix \"src/**/*.md\" \"knowledges/**/*.md\"",
+    "lint:chapters": "markdownlint-cli2 \"src/chapters/**/*.md\" && textlint \"src/chapters/**/*.md\"",
+    "lint:chapters:fix": "markdownlint-cli2 --fix \"src/chapters/**/*.md\" && textlint --fix \"src/chapters/**/*.md\"",
+    "batch-improve": "./scripts/batch-improve.sh",
     "check:epub": "bun run scripts/check-epub.ts"
   },
   "dependencies": {

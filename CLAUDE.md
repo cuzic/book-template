@@ -22,6 +22,11 @@ bun run lint               # Run all linters
 bun run lint:fix           # Auto-fix lint errors
 bun run lint:md            # markdownlint only
 bun run lint:text          # textlint only
+bun run lint:chapters      # src/chapters/ のみチェック
+bun run lint:chapters:fix  # src/chapters/ のみ修正
+
+# 夜間バッチ処理
+bun run batch-improve      # Claude CLI で lint 修正を繰り返す
 
 # Image generation (requires GEMINI_API_KEY env var)
 bun run images:prompts     # Generate batch-requests.jsonl from src/images.json
@@ -55,9 +60,18 @@ bun run images:download    # Download generated images to src/assets/images/
 - Supports aspect ratios: 3:4, 1:1, 4:3
 - Workflow: Reviewer→Illustrator→Publisher (バッチ処理でコスト削減)
 
-**GitHub Actions** (`.github/workflows/deploy.yml`):
+**GitHub Actions**:
+
+`.github/workflows/deploy.yml`:
 - Lint → Build EPUB → Validate → Build Site → Deploy to GitHub Pages
 - PRではビルドのみ、mainブランチへのpushでデプロイ
+
+`.github/workflows/nightly-batch.yml`:
+- 毎日 JST 3:00 に実行（スケジュール）
+- Claude CLI で lint エラーを自動修正
+- 修正があれば自動コミット・プッシュ
+- 手動実行も可能（workflow_dispatch）
+- 要: `ANTHROPIC_API_KEY` シークレット
 
 ## Linting Policy
 
