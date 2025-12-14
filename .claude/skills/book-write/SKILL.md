@@ -1,6 +1,6 @@
 ---
 name: book-write
-description: knowledgesを参照しながら章の本文を執筆する。
+description: src/toc.mdの目次に基づいて章の本文を執筆する。
 argument-hint: "<章番号> (例: 01, 02, all)"
 ---
 
@@ -16,12 +16,17 @@ argument-hint: "<章番号> (例: 01, 02, all)"
 
 $ARGUMENTS
 
+## 入出力
+
+- **入力**: `src/toc.md`（目次）、`knowledges/`（調査結果）
+- **出力**: `src/chapters/XX-slug.md`（章ファイル）
+
 ## 処理手順
 
-1. 対象の章ファイル（`src/chapters/XX-*.md`）を読み込む
-2. `knowledges/` から関連する知見を収集する
-3. `book.json` のメタデータを確認する
-4. 見出し構造に従って本文を執筆する
+1. `src/toc.md`から該当章の構成を読み込む
+2. `knowledges/`から関連する知見を収集する
+3. `book.json`のメタデータを確認する
+4. `src/chapters/XX-slug.md`に本文を執筆する
 5. 執筆後、lintチェックを実行する
 6. エラーがあれば修正する
 
@@ -45,9 +50,26 @@ $ARGUMENTS
 
 - knowledgesの情報を適切に引用する
 - 出典がある場合は明記する
-- 画像を使う場合は `images/` を参照する
+- 画像を使う場合は`images/`を参照する
+
+## ファイル命名規則
+
+```text
+src/chapters/XX-slug.md
+```
+
+- XX：2桁の章番号（01, 02, ...）
+- slug：章の英語名（小文字、ハイフン区切り）
+
+例：
+
+- `src/chapters/01-introduction.md`
+- `src/chapters/02-basics.md`
+- `src/chapters/03-advanced.md`
 
 ## 出力例
+
+`src/chapters/01-introduction.md`:
 
 ```markdown
 # 第1章 はじめに
@@ -72,6 +94,7 @@ $ARGUMENTS
 
 ## 注意事項
 
-- 執筆後は必ず `bun run lint` を実行する
-- 画像は `images/章番号-名前.png` 形式で参照する
+- **執筆後は必ず`bun run lint`を実行する**（本文執筆では必須）
+- 画像は`images/章番号-名前.png`形式で参照する
 - コードブロックには言語を指定する
+- lintエラーは全て解消してから完了とする

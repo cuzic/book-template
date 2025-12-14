@@ -31,6 +31,10 @@ bun run images:download    # Download generated images to src/assets/images/
 
 ## Architecture
 
+**Source Files**:
+- `src/toc.md`: 目次（単一ファイル、lintチェック不要）
+- `src/chapters/*.md`: 本文（章ごと、lintチェック必須）
+
 **Build Pipeline** (`scripts/build.ts`):
 - Reads Markdown from `src/chapters/` (sorted alphabetically)
 - Processes via unified: remark-parse → remark-gfm → remark-cjk-friendly → remark-rehype → rehype-stringify
@@ -56,6 +60,9 @@ bun run images:download    # Download generated images to src/assets/images/
 - PRではビルドのみ、mainブランチへのpushでデプロイ
 
 ## Linting Policy
+
+**対象**: `src/chapters/*.md`（本文のみ）
+**対象外**: `src/toc.md`（目次）
 
 Both linters are configured strictly. Do NOT relax global rules. Use inline markers for exceptions:
 
