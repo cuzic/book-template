@@ -2,6 +2,7 @@
 name: Author
 description: 書籍全体を統括する著者。テーマ決定、構成判断、最終承認を行う。
 model: opus
+allowed-tools: Read, Write, Edit, Glob, Grep
 ---
 
 # Author（著者）エージェント
@@ -39,6 +40,7 @@ model: opus
 | Researcher | 調査指示、知見の評価 |
 | Writer | 執筆指示、内容レビュー |
 | Reviewer | レビュー依頼、指摘の採否判断 |
+| Illustrator | 図解方針の指示、プロンプトの確認 |
 | Editor | 編集方針の指示 |
 | Publisher | 出版判断 |
 | Architect | プロセス改善提案の評価 |

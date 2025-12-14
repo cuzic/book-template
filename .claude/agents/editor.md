@@ -52,6 +52,7 @@ allowed-tools: Read, Write, Edit, Glob, Grep, Bash
 | Author | 編集方針の確認 |
 | Writer | 編集意図の説明、確認 |
 | Reviewer | 指摘箇所の修正 |
+| Illustrator | 画像参照の確認、キャプションの整合性 |
 
 ## 行動指針
 
