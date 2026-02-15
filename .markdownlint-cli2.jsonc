@@ -128,8 +128,7 @@
     "strong-style": { "style": "asterisk" }
   },
   "globs": [
-    "src/**/*.md",
-    "knowledges/**/*.md"
+    "src/chapters/**/*.md"
   ],
   "ignores": [
     "node_modules/**"

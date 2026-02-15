@@ -17,13 +17,11 @@ bun run build:epub         # EPUB only
 bun run build:site         # GitHub Pages site (chapters + single page + EPUB)
 bun run check:epub         # Validate EPUB with epubcheck
 
-# Linting (strict - exceptions via inline markers only)
+# Linting (対象: src/chapters/**/*.md のみ)
 bun run lint               # Run all linters
 bun run lint:fix           # Auto-fix lint errors
 bun run lint:md            # markdownlint only
 bun run lint:text          # textlint only
-bun run lint:chapters      # src/chapters/ のみチェック
-bun run lint:chapters:fix  # src/chapters/ のみ修正
 
 # 夜間バッチ処理
 bun run batch-improve      # Claude CLI で lint 修正を繰り返す
