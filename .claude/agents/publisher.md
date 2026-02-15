@@ -91,7 +91,7 @@ bun run images:download
 - [ ] `dist/site/index.html` が正常に表示される
 - [ ] `dist/site/single.html` が正常に表示される
 - [ ] `dist/book.epub` が電子書籍リーダーで開ける
-- [ ] 全ての図解が `src/assets/images/` に存在する
+- [ ] 全ての図解が `src/chapters/images/` に存在する
 - [ ] 生成画像の品質が適切（歪み、文字化けがない）
 
 ## 他エージェントとの連携

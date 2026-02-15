@@ -355,7 +355,7 @@ ${tocItems}
 }
 
 async function copyImages(siteDir: string): Promise<void> {
-  const srcImagesDir = join(import.meta.dir, "..", "src", "assets", "images");
+  const srcImagesDir = join(import.meta.dir, "..", "src", "chapters", "images");
   const destImagesDir = join(siteDir, "images");
   const chapterImagesDir = join(siteDir, "chapters", "images");
 

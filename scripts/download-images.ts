@@ -64,7 +64,7 @@ async function main() {
 
   console.log("Downloading results...");
 
-  const outputDir = join(import.meta.dir, "..", "src", "assets", "images");
+  const outputDir = join(import.meta.dir, "..", "src", "chapters", "images");
   await mkdir(outputDir, { recursive: true });
 
   const response = await fetch(batch.destGcsUri);

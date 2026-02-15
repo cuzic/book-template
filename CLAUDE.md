@@ -31,14 +31,66 @@ bun run batch-improve      # Claude CLI で lint 修正を繰り返す
 # Image generation (requires GEMINI_API_KEY env var)
 bun run images:prompts     # Generate batch-requests.jsonl from src/images.json
 bun run images:submit      # Upload JSONL and submit batch job to Gemini
-bun run images:download    # Download generated images to src/assets/images/
+bun run images:download    # Download generated images to src/chapters/images/
 ```
 
-## Architecture
+## Directory Structure
 
-**Source Files**:
-- `src/toc.md`: 目次（単一ファイル、lintチェック不要）
-- `src/chapters/*.md`: 本文（章ごと、lintチェック必須）
+```
+book-template/
+├── src/                          # ソースファイル
+│   ├── toc.md                    # 目次（詳細化済み執筆ガイド）
+│   ├── chapters/                 # 本文
+│   │   ├── 01-introduction.md    # 各章のMarkdown
+│   │   ├── 02-basics.md
+│   │   ├── ...
+│   │   └── images/               # 章で使用する画像
+│   │       ├── 01-diagram.png
+│   │       └── ...
+│   └── images.json               # Gemini画像生成プロンプト
+│
+├── knowledges/                   # 調査・レビュー結果
+│   ├── *.md                      # 調査結果（Researcher）
+│   ├── reviews/                  # レビュー結果（Reviewer）
+│   ├── approvals/                # 承認記録（Author）
+│   └── process/                  # プロセス知見（Architect）
+│
+├── dist/                         # ビルド成果物（生成物）
+│   ├── html/                     # HTML出力
+│   ├── xhtml/                    # XHTML出力
+│   ├── site/                     # GitHub Pages用
+│   │   ├── index.html            # 目次ページ
+│   │   ├── single.html           # 全章1ページ
+│   │   ├── chapters/             # 章ごとのHTML
+│   │   └── images/               # 画像コピー
+│   └── book.epub                 # EPUB出力
+│
+├── scripts/                      # ビルド・ユーティリティ
+├── .claude/                      # Claude Code設定
+│   ├── agents/                   # エージェント定義（8役割）
+│   └── skills/                   # スキル定義
+│
+├── book.json                     # 書籍メタデータ
+├── package.json
+└── CLAUDE.md                     # このファイル
+```
+
+## File Ownership by Agent
+
+| ディレクトリ/ファイル | 担当エージェント | 説明 |
+| ---- | ---- | ---- |
+| `src/toc.md` | Author, Researcher | 目次・執筆ガイド（lint不要） |
+| `src/chapters/*.md` | Writer, Editor | 本文（lint必須） |
+| `src/chapters/images/` | Illustrator, Publisher | 画像ファイル |
+| `src/images.json` | Illustrator | 画像生成プロンプト |
+| `knowledges/*.md` | Researcher | 調査結果 |
+| `knowledges/reviews/` | Reviewer | レビュー結果 |
+| `knowledges/approvals/` | Author | 承認記録 |
+| `knowledges/process/` | Architect | プロセス知見 |
+| `dist/` | Publisher | ビルド成果物 |
+| `.claude/` | Architect | エージェント・スキル定義 |
+
+## Architecture
 
 **Build Pipeline** (`scripts/build.ts`):
 - Reads Markdown from `src/chapters/` (sorted alphabetically)

@@ -70,7 +70,7 @@ bun run images:download
 - ジョブの完了を確認
 - 結果をダウンロード
 - base64画像をデコード
-- `src/assets/images/` に保存
+- `src/chapters/images/` に保存
 
 ## --dry-run オプション
 
@@ -86,10 +86,10 @@ cat batch-requests.jsonl | head -1 | jq .
 
 ```bash
 # 生成された画像を確認
-ls -la src/assets/images/
+ls -la src/chapters/images/
 
 # 画像サイズを確認
-file src/assets/images/*.png
+file src/chapters/images/*.png
 ```
 
 ## エラー対応
@@ -122,7 +122,7 @@ file src/assets/images/*.png
 
 ## ファイル配置
 
-- 出力先: `src/assets/images/`
+- 出力先: `src/chapters/images/`
 - 生成数: N 件
 
 ## 品質確認

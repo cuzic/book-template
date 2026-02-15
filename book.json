@@ -5,5 +5,5 @@
   "identifier": "urn:uuid:00000000-0000-0000-0000-000000000000",
   "publisher": "出版社",
   "description": "書籍の説明",
-  "cover": "src/assets/images/cover.png"
+  "cover": "src/chapters/images/cover.png"
 }
